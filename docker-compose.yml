@@ -1,0 +1,52 @@
+version: '3.8'
+services:
+  dns:
+    image: "debian:bullseye"
+    container_name: dns
+    tty: true
+    networks:
+      mype:
+        ipv4_address: 192.168.1.254
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "512m"
+        reservations:
+          cpus: "1"
+          memory: "128m"
+  web:
+    image: debian:bullseye
+    container_name: web
+    tty: true
+    networks:
+      mype:
+        ipv4_address: 192.168.1.252
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "512m"
+        reservations:
+          cpus: "1"
+          memory: "128m"
+  db:
+    image: mysql
+    container_name: mysql
+    tty: true
+    environment:
+      MYSQL_ROOT_PASSWORD: "redes@2022"
+      MYSQL_DATABASE: "DB_mype"
+      MYSQL_USER: "palomino"
+      MYSQL_PASSWORD: "redes@2022"
+    networks:
+      mype:
+        ipv4_address: 192.168.1.250
+networks:
+  mype:
+    name: mype
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.1.0/24"
+          gateway: "192.168.1.1"
