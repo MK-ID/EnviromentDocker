@@ -46,6 +46,8 @@ networks:
   mype:
     name: mype
     driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: compartido
     ipam:
       config:
         - subnet: "192.168.1.0/24"
