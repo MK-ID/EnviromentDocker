@@ -29,6 +29,21 @@ services:
           memory: "1024m"
         reservations:
           cpus: "0.5"
+          memory: "512m"
+  nms:
+    image: "debian:bullseye"
+    container_name: web
+    tty: true
+    networks:
+      mype:
+        ipv4_address: 192.168.1.240
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: "1024m"
+        reservations:
+          cpus: "0.5"
           memory: "256m"
   db:
     image: "mysql"
