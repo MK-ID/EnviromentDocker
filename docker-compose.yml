@@ -32,7 +32,7 @@ services:
           memory: "512m"
   nms:
     image: "debian:bullseye"
-    container_name: web
+    container_name: nms
     tty: true
     networks:
       mype:
